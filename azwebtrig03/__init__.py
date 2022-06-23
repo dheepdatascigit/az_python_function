@@ -10,12 +10,14 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if not name:
         try:
             req_body = req.get_json()
+            logging.info(f"Output: {req_body}")
         except ValueError:
             pass
         else:
             name = req_body.get('name')
 
     if name:
+        logging.info(f"Output: {name}")
         return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
     else:
         return func.HttpResponse(
